@@ -18,9 +18,9 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y
 #
 # Install gulp, bower, protractor
 #
-RUN npm install -g gulp bower yarn
+RUN npm install -g gulp bower
 RUN cd ~ && git clone https://github.com/netcookies/sass-server-gulp.git
-RUN cd ~/sass-server-gulp && yarn install && bower install
+RUN cd ~/sass-server-gulp && npm install && bower install
 
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
