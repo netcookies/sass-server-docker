@@ -4,7 +4,8 @@ EXPOSE 8080 8000 3001
 #
 # Install gulp, bower, protractor
 #
-RUN apk --update add g++ gcc make git
+RUN apk --update add g++ gcc make git && \
+    rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
 COPY sass-sever-gulp /app/
 COPY node-sass /app/
@@ -26,4 +27,8 @@ RUN mkdir -p /workPlace && \
     ln -s /workPlace/public ~/sass-server-gulp/public && \
     mv ~/sass-server-gulp/src /workPlace && \
     ln -s /workPlace/src ~/sass-server-gulp/src
+RUN apk del make g++ libc-dev musl-dev \
+    gcc mpc1 mpfr3 pkgconfig pkgconf libatomic libgomp \
+    isl gmp binutils binutils-libs && \
+    rm -fR /var/cache/apk/*;
 WORKDIR /app/web/
