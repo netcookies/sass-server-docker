@@ -7,8 +7,8 @@ EXPOSE 8080 8000 3001
 RUN apk --update add g++ gcc make git && \
     rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
-COPY sass-sever-gulp /app/
-COPY node-sass /app/
+COPY sass-sever-gulp/ /app/
+COPY node-sass/ /app/
 COPY build-node-sass.sh /app/build-node-sass.sh
 RUN cd /app && \
     mkdir -p web/public && \
