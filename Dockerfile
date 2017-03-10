@@ -15,7 +15,7 @@ RUN cd /app && \
     mv sass-server-gulp/src/ web/ && \
     ln -s /app/web/public/ sass-server-gulp/public && \
     ln -s /app/web/src/ sass-server-gulp/src
-RUN chmod+x node-sass-build.sh && bash node-sass-build.sh
+RUN chmod +x node-sass-build.sh && sh node-sass-build.sh
 RUN cd ~/sass-server-gulp && npm install && bower install
 
 #
