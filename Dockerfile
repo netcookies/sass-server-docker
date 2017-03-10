@@ -1,25 +1,20 @@
-FROM debian:jessie
+FROM cusspvz/node:latest
 
 EXPOSE 8080 8000 3001
-# Replace sources.list with 163's sources.list
-#RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
-    #echo 'deb http://mirrors.163.com/debian/ jessie main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb http://mirrors.163.com/debian/ jessie-backports main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb-src http://mirrors.163.com/debian/ jessie main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb-src http://mirrors.163.com/debian/ jessie-updates main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb-src http://mirrors.163.com/debian/ jessie-backports main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib' >> /etc/apt/sources.list && \
-    #echo 'deb-src http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib' >> /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y software-properties-common git nodejs
-
 #
 # Install gulp, bower, protractor
 #
+RUN apk --update add g++ gcc make git
 RUN npm install -g gulp bower
-RUN cd ~ && git clone https://github.com/netcookies/sass-server-gulp.git
+COPY sass-sever-gulp /app/
+COPY node-sass /app/
+COPY build-node-sass.sh /app/build-node-sass.sh
+RUN cd /app && \
+    mkdir -p web/public && \
+    mv sass-server-gulp/src/ web/ && \
+    ln -s /app/web/public/ sass-server-gulp/public && \
+    ln -s /app/web/src/ sass-server-gulp/src
+RUN chmod+x node-sass-build.sh && bash node-sass-build.sh
 RUN cd ~/sass-server-gulp && npm install && bower install
 
 #
@@ -31,5 +26,4 @@ RUN mkdir -p /workPlace && \
     ln -s /workPlace/public ~/sass-server-gulp/public && \
     mv ~/sass-server-gulp/src /workPlace && \
     ln -s /workPlace/src ~/sass-server-gulp/src
-ADD . workPlace
-WORKDIR workPlace
+WORKDIR /app/web/
