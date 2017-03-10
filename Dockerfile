@@ -27,7 +27,7 @@ RUN mkdir -p /workPlace && \
     ln -s /workPlace/public ~/sass-server-gulp/public && \
     mv ~/sass-server-gulp/src /workPlace && \
     ln -s /workPlace/src ~/sass-server-gulp/src
-RUN apk del make g++ libc-dev musl-dev \
+RUN apk del make git pcre expat libcurl libssh2 g++ libc-dev musl-dev \
     gcc mpc1 mpfr3 pkgconfig pkgconf libatomic libgomp \
     isl gmp binutils binutils-libs && \
     rm -fR /var/cache/apk/*;
