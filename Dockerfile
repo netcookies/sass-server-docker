@@ -8,8 +8,8 @@ RUN apk --update add g++ gcc make git && \
     rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
 COPY node-sass-build.sh /app/node-sass-build.sh
-COPY sass-sever-gulp/ /app/sass-server-gulp/
-COPY node-sass/ /app/node-sass/
+COPY sass-sever-gulp/ /app/
+COPY node-sass/ /app/
 RUN cd /app && \
     mkdir -p web/public && \
     mv sass-server-gulp/src/ web/ && \
