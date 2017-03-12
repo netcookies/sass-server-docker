@@ -6,11 +6,7 @@ EXPOSE 8080 8000 3001
 #
 RUN apk --update add build-base automake autoconf gettext libtool file git python \
     jpeg-dev libpng-dev nasm
-RUN npm install -g gulp bower
-RUN git config --system http.sslverify false && \
-    git clone https://github.com/mozilla/mozjpeg.git && \
-    cd mozjpeg && autoreconf -fiv && ./configure --with-jpeg8 && \
-    make && make install
+RUN npm install -g gulp bower && git config --system http.sslverify false 
 ADD sass-server-gulp /app/sass-server-gulp
 RUN cd /app && \
     mkdir -p web/public && \
