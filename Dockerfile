@@ -16,17 +16,17 @@ RUN cd /app && \
     ln -s /app/web/public/ sass-server-gulp/public && \
     ln -s /app/web/src/ sass-server-gulp/src
 RUN chmod +x node-sass-build.sh && sh node-sass-build.sh
-RUN cd ~/sass-server-gulp && npm install && bower install
+RUN cd /app/sass-server-gulp && npm install && bower install
 
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
 #
-RUN mkdir -p /workPlace && \
-    mkdir -p /workPlace/public && \
-    mv src/scss /workPlace/ && \
-    ln -s /workPlace/public ~/sass-server-gulp/public && \
-    mv ~/sass-server-gulp/src /workPlace && \
-    ln -s /workPlace/src ~/sass-server-gulp/src
+RUN mkdir -p /app/sources && \
+    mkdir -p /app/sources/public && \
+    mv src/scss /app/sources/ && \
+    ln -s /app/sources/public /app/sass-server-gulp/public && \
+    mv /app/sass-server-gulp/src /app/sources && \
+    ln -s /app/sources/src /app/sass-server-gulp/src
 RUN apk del make git pcre expat libcurl libssh2 g++ libc-dev musl-dev \
     gcc mpc1 mpfr3 pkgconfig pkgconf libatomic libgomp \
     isl gmp binutils binutils-libs && \
