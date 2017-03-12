@@ -6,15 +6,18 @@ EXPOSE 8080 8000 3001
 #
 RUN apk --update add build-base automake autoconf gettext libtool file git python \
     jpeg-dev libpng-dev nasm
-RUN npm install -g gulp bower && \
-    git config --system http.sslverify false
+RUN npm install -g gulp bower
+RUN git config --system http.sslverify false && \
+    git clone https://github.com/mozilla/mozjpeg.git && \
+    cd mozjpeg && autoreconf -fiv && ./configure --with-jpeg8 && \
+    make && make install
 ADD sass-server-gulp /app/sass-server-gulp
 RUN cd /app && \
     mkdir -p web/public && \
     mkdir -p web/src && \
     ln -s /app/web/public/ sass-server-gulp/public && \
-    ln -s /app/web/src/ sass-server-gulp/src
-RUN cd /app/sass-server-gulp && npm install && bower install --allow-root
+    ln -s /app/web/src/ sass-server-gulp/src && \
+    cd /app/sass-server-gulp && npm install && bower install --allow-root
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
 #
