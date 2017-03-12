@@ -8,7 +8,7 @@ RUN apk --update add g++ gcc make git && \
     rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
 ADD node-sass-build.sh /app/node-sass-build.sh
-ADD sass-sever-gulp /app/sass-server-gulp
+ADD sass-server-gulp /app/sass-server-gulp
 ADD node-sass /app/node-sass
 RUN cd /app && \
     mkdir -p web/public && \
