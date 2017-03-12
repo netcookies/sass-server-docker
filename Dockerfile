@@ -7,7 +7,6 @@ EXPOSE 8080 8000 3001
 #RUN apk --update add g++ gcc make autoconf git python && \
 RUN apk --update add build-base libpng-dev autoconf git python
 RUN npm install -g gulp bower
-ADD node-sass-build.sh /app/node-sass-build.sh
 RUN git config --system http.sslverify false && \
     git clone https://github.com/netcookies/sass-server-gulp.git
 RUN cd /app && \
@@ -20,6 +19,6 @@ RUN cd /app/sass-server-gulp && npm install && bower install --allow-root
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
 #
-RUN apk del git build-base autoconf && \
+RUN apk del git build-base autoconf libpng-dev && \
     rm -fR /var/cache/apk/*;
 WORKDIR /app/web/
