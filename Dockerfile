@@ -4,7 +4,7 @@ EXPOSE 8080 8000 3001
 #
 # Install gulp, bower, protractor
 #
-RUN apk --update add g++ gcc make git python && \
+RUN apk --update add g++ gcc make autoreconf git python && \
     rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
 ADD node-sass-build.sh /app/node-sass-build.sh
@@ -15,8 +15,8 @@ RUN cd /app && \
     mv sass-server-gulp/src/ web/ && \
     ln -s /app/web/public/ sass-server-gulp/public && \
     ln -s /app/web/src/ sass-server-gulp/src
-RUN chmod +x node-sass-build.sh && sh node-sass-build.sh
-RUN cd /app/sass-server-gulp && npm install && bower install
+#RUN chmod +x node-sass-build.sh && sh node-sass-build.sh
+RUN cd /app/sass-server-gulp && npm install && bower install --allow-root
 
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
