@@ -5,7 +5,7 @@ EXPOSE 8080 8000 3001
 # Install gulp, bower, protractor
 #
 #RUN apk --update add g++ gcc make autoconf git python && \
-RUN apk --update add alphine-sdk git python && \
+RUN apk --update add build-base git python && \
     rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
 ADD node-sass-build.sh /app/node-sass-build.sh
@@ -22,6 +22,6 @@ RUN cd /app/sass-server-gulp && npm install && bower install --allow-root
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
 #
-RUN apk del git alphine-sdk && \
+RUN apk del git build-base && \
     rm -fR /var/cache/apk/*;
 WORKDIR /app/web/
