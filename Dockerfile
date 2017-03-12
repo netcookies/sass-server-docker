@@ -13,7 +13,8 @@ RUN cd /app && \
     mkdir -p web/src && \
     ln -s /app/web/public/ sass-server-gulp/public && \
     ln -s /app/web/src/ sass-server-gulp/src && \
-    cd /app/sass-server-gulp && npm install && bower install --allow-root
+    cd /app/sass-server-gulp && sed -ie 's/zopflipng/jpegRecompress/g' gulpfile.js && \
+    npm install && bower install --allow-root
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
 #
