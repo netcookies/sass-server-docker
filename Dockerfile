@@ -5,7 +5,7 @@ EXPOSE 8080 8000 3001
 # Install gulp, bower, protractor
 #
 RUN apk --update add build-base automake autoconf gettext libtool git python \
-    jpeg-dev libpng-dev && \
+    jpeg-dev libpng-dev
 RUN npm install -g gulp bower && \
     git config --system http.sslverify false
 ADD sass-server-gulp /app/sass-server-gulp
