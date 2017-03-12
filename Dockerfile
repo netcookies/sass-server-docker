@@ -4,7 +4,7 @@ EXPOSE 8080 8000 3001
 #
 # Install gulp, bower, protractor
 #
-RUN apk --update add g++ gcc make git && \
+RUN apk --update add g++ gcc make git python && \
     rm -fR /var/cache/apk/*;
 RUN npm install -g gulp bower
 ADD node-sass-build.sh /app/node-sass-build.sh
