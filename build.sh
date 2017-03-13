@@ -6,3 +6,5 @@ mkdir public
 mv sass-server-gulp/src .
 
 docker build -t sass-server-docker .
+
+rm -rf sass-server-gulp
