@@ -19,4 +19,4 @@ RUN apk del git gettext libtool file autoconf automake build-base \
     rm -fR /var/cache/apk/*;
 WORKDIR /app/sass-server-gulp/
 ENTRYPOINT ["gulp"]
-CMD [""]
+CMD ["--http"]
