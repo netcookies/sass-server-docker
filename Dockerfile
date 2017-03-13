@@ -10,7 +10,7 @@ RUN apk --update add build-base automake autoconf gettext libtool file git pytho
 RUN npm install -g gulp bower && git config --system http.sslverify false
 ADD sass-server-gulp /app/sass-server-gulp
 RUN cd /app/sass-server-gulp && sed -ie 's/zopflipng/jpegRecompress/g' gulpfile.js && \
-    npm install && bower install --allow-root
+    rm gulpfile.jse && npm install && bower install --allow-root
 #
 # Setup WORKINGDIR so that docker image can be easily tested.
 #
