@@ -18,4 +18,5 @@ RUN apk del git gettext libtool file autoconf automake build-base \
     jpeg-dev libpng-dev nasm && \
     rm -fR /var/cache/apk/*;
 WORKDIR /app/sass-server-gulp/
-CMD ["gulp"]
+ENTRYPOINT ["gulp"]
+CMD [""]
