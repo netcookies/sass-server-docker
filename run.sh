@@ -1,10 +1,10 @@
 #!/bin/sh
 
-http_port= 8080
-reserve_proxy_port= 8000
-admin_port= 3001
-public_path= `pwd`/public
-src_path= `pwd`/src
+http_port=8080
+reserve_proxy_port=8000
+admin_port=3001
+public_path="$(pwd)/public"
+src_path="$(pwd)/src"
 
 docker run -d \
     -p $http_port:8080 \
