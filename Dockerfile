@@ -14,7 +14,7 @@ RUN cd /app && git clone https://github.com/netcookies/sass-server-gulp.git && \
     bower install  --production --silent --config.interactive=false --allow-root
 
 RUN cd /app/sass-server-gulp && \
-    npm cache clean && bower cache clean && \
+    npm cache clean && bower --allow-root cache clean && \
     apk del git gettext libtool file autoconf automake build-base \
     jpeg-dev libpng-dev nasm && \
     rm -fR /var/cache/apk/*;
