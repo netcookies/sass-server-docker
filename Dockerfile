@@ -1,23 +1,17 @@
-FROM cusspvz/node:latest
+FROM node
 
 MAINTAINER andrew.li@hinterlands.com.au
 
-RUN apk --update add build-base automake autoconf gettext libtool file git python \
-    jpeg-dev libpng-dev nasm
-
-RUN npm install -g --silent --progress=false gulp bower && git config --system http.sslverify false
+RUN yarn global add gulpjs/gulp#4.0 bower && git config --system http.sslverify false
 
 # disable jpegRecompress cause it can not build successful in alpine linux
 RUN cd /app && git clone https://github.com/netcookies/sass-server-gulp.git && \
     cd /app/sass-server-gulp && sed -ie 's/zopflipng/jpegRecompress/g' gulpfile.js && \
-    rm gulpfile.jse && npm install --silent --progress=false && \
+    rm gulpfile.jse && rm -rf yarn.lock && yarn clean && yarn install && \
     bower install  --production --silent --config.interactive=false --allow-root
 
 RUN cd /app/sass-server-gulp && \
-    npm cache clean && bower --allow-root cache clean && \
-    apk del git gettext libtool file autoconf automake build-base \
-    jpeg-dev libpng-dev nasm && \
-    rm -fR /var/cache/apk/*;
+    yarn cache clean && bower --allow-root cache clean
 
 WORKDIR /app/sass-server-gulp/
 
