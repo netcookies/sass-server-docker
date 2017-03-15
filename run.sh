@@ -18,4 +18,4 @@ docker run -d \
     -v $public_path:/app/sass-server-gulp/public/ \
     -v $src_path:/app/sass-server-gulp/src/ \
     --name ${PWD##*/} \
-    sass-server-docker
+    sass-server-gulp
