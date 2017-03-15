@@ -17,4 +17,5 @@ docker run -d \
     -p $admin_port:3001 \
     -v $public_path:/app/sass-server-gulp/public/ \
     -v $src_path:/app/sass-server-gulp/src/ \
+    --name ${PWD##*/} \
     sass-server-docker
