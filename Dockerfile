@@ -11,7 +11,7 @@ RUN mkdir /app && cd /app && git clone https://github.com/netcookies/sass-server
     bower install --production --silent --config.interactive=false --allow-root
 
 RUN cd /app/sass-server-gulp && \
-    yarn clean && yarn cache clean && bower --allow-root cache clean
+    yarn cache clean && bower --allow-root cache clean
 
 WORKDIR /app/sass-server-gulp/
 
