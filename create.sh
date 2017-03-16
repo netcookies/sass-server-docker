@@ -19,12 +19,14 @@ randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
 projectName=$newuser
 projectFolder="${PWD}/project/$projectName"
 home="${PWD}/bare/"
+repo="$projectName"".git"
 bareRepo=$home"/"$projectName".git"
 
 getent group $userGroup || groupadd $userGroup
 getent group docker || groupadd docker
 
-git init --bare $bareRepo
+cd $home
+git init --bare $repo
 useradd -d $home --shell /bin/bash -g $userGroup $newuser
 gpasswd -a $newuser docker
 chown -R $newuser:$userGroup $bareRepo
