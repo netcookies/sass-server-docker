@@ -21,6 +21,7 @@ projectFolder="${PWD}/project/$projectName"
 home="${PWD}/bare/"
 repo="$projectName"".git"
 bareRepo=$home"/"$projectName".git"
+gitMail=$newuser"@hinterlands.bot"
 
 getent group $userGroup || groupadd $userGroup
 getent group docker || groupadd docker
@@ -32,6 +33,8 @@ gpasswd -a $newuser docker
 chown -R $newuser:$userGroup $bareRepo
 
 git clone $bareRepo $projectFolder
+git config user.email $gitMail
+git config user.name $newuser
 cp run.sh $projectFolder
 cp gitignore $projectFolder/.gitignore
 cd $projectFolder
