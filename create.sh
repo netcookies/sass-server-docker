@@ -16,19 +16,22 @@ fi
 newuser=$1
 randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
 projectGroup="project"
-home="${PWD}/$newuser"
+#home="${PWD}/$newuser"
+repo="$newuser"".git"
+home=$repo
 
 getent group $projectGroup || groupadd $projectGroup
 getent group docker || groupadd docker
-useradd --create-home -d $home --shell /bin/bash -g $projectGroup $newuser
+git init --bare $repo
+useradd -d $home --shell /bin/bash -g $projectGroup $newuser
 gpasswd -a $newuser docker
 
 cp run.sh $home
+cp gitignore $home/.gitignore
 cd $home
 mkdir public
 mkdir src
-cd src
-git clone https://github.com/netcookies/community-skin.git scss
+git submodule add  https://github.com/netcookies/community-skin.git src/scss
 chown -R $newuser:$projectGroup $home
 
 # Create new user and assign random password.
