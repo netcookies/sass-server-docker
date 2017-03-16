@@ -35,6 +35,9 @@ cp gitignore $projectFolder/.gitignore
 cd $projectFolder
 mkdir public
 git submodule add https://github.com/netcookies/community-skin.git src/scss
+git add --all
+git commit -am "init"
+git push
 
 # Create new user and assign random password.
 
