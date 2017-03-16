@@ -38,6 +38,7 @@ cp gitignore $projectFolder/.gitignore
 cd $projectFolder
 git config user.email $gitMail
 git config user.name $newuser
+git config push.default simple
 git submodule add https://github.com/netcookies/community-skin.git src/scss
 mkdir public
 git add --all
