@@ -23,7 +23,7 @@ home=/home/$newuser
 getent group $projectGroup || groupadd $projectGroup
 getent group docker || groupadd docker
 git init --bare $repo
-useradd -d $home --shell /bin/bash -g $projectGroup $newuser
+useradd -m --shell /bin/bash -g $projectGroup $newuser
 gpasswd -a $newuser docker
 
 cp run.sh $repo
