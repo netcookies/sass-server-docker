@@ -33,13 +33,13 @@ gpasswd -a $newuser docker
 chown -R $newuser:$userGroup $bareRepo
 
 git clone $bareRepo $projectFolder
-git config user.email $gitMail
-git config user.name $newuser
 cp run.sh $projectFolder
 cp gitignore $projectFolder/.gitignore
 cd $projectFolder
-mkdir public
+git config user.email $gitMail
+git config user.name $newuser
 git submodule add https://github.com/netcookies/community-skin.git src/scss
+mkdir public
 git add --all
 git commit -am "init"
 git push
