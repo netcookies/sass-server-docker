@@ -31,7 +31,7 @@ useradd -d $home --shell /bin/bash -g $userGroup $newuser
 gpasswd -a $newuser docker
 chown -R $newuser:$userGroup $bareRepo
 
-git clone $bareRepo
+git clone $bareRepo $projectFolder
 cp run.sh $projectFolder
 cp gitignore $projectFolder/.gitignore
 cd $projectFolder
