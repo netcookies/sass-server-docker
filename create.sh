@@ -18,6 +18,7 @@ userGroup="project"
 randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
 projectName=$newuser
 projectFolder="${PWD}/project/$projectName"
+base=${PWD}
 home="${PWD}/bare/"
 repo="$projectName"".git"
 bareRepo=$home"/"$projectName".git"
@@ -33,8 +34,8 @@ gpasswd -a $newuser docker
 chown -R $newuser:$userGroup $bareRepo
 
 git clone $bareRepo $projectFolder
-cp run.sh $projectFolder
-cp gitignore $projectFolder/.gitignore
+cp $base/run.sh $projectFolder
+cp $base/gitignore $projectFolder/.gitignore
 cd $projectFolder
 git config user.email $gitMail
 git config user.name $newuser
