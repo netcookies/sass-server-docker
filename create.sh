@@ -14,24 +14,27 @@ fi
 # Declare local variables, generate random password.
 
 newuser=$1
+userGroup="project"
 randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
-projectGroup="project"
-repo="$newuser"".git"
-home="${PWD}/$repo/"
+projectName=$newuser
+projectFolder="${PWD}/project/$projectName"
+home="${PWD}/bare/"
+bareRepo=$home"/"$projectName".git"
 
-getent group $projectGroup || groupadd $projectGroup
+getent group $userGroup || groupadd $userGroup
 getent group docker || groupadd docker
-git init --bare $repo
-useradd -d $home --shell /bin/bash -g $projectGroup $newuser
-gpasswd -a $newuser docker
 
-cp run.sh $home
-cp gitignore $home/.gitignore
-cd $home
+git init --bare $bareRepo
+useradd -d $home --shell /bin/bash -g $userGroup $newuser
+gpasswd -a $newuser docker
+chown -R $newuser:$userGroup $bareRepo
+
+git clone $bareRepo
+cp run.sh $projectFolder
+cp gitignore $projectFolder/.gitignore
+cd $projectFolder
 mkdir public
-mkdir src
-git submodule add  https://github.com/netcookies/community-skin.git src/scss
-chown -R $newuser:$projectGroup $home
+git submodule add https://github.com/netcookies/community-skin.git src/scss
 
 # Create new user and assign random password.
 
