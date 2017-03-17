@@ -136,3 +136,8 @@ run.sh
 .bash_logout
 .bashrc
 .profile
+gulpfile.js
+bower.json
+package.json
+yarn.lock
+html/assets
