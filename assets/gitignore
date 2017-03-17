@@ -140,4 +140,5 @@ gulpfile.js
 bower.json
 package.json
 yarn.lock
-html/assets
+src/html/assets
+public/html/assets
