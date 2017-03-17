@@ -15,7 +15,8 @@ fi
 
 newuser=$1
 userGroup="project"
-randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+#randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+randompw="wolf${newuser:0:3}"
 projectName=$newuser
 projectFolder="${PWD}/project/$projectName"
 base=${PWD}
