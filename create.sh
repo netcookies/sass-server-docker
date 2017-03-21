@@ -47,6 +47,7 @@ cp $base/assets/*.scss $projectFolder/src/scss
 git add --all
 git commit -am "init"
 git push
+chown -R $newuser:$userGroup $bareRepo
 
 # Create new user and assign random password.
 
