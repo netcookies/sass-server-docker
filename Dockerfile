@@ -13,6 +13,6 @@ RUN cd /app/sass-server-gulp && \
 
 WORKDIR /app/sass-server-gulp/
 
-ENTRYPOINT ["gulp","--nolocal"]
+ENTRYPOINT ["gulp"]
 
 CMD ["--http"]
