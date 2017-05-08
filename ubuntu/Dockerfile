@@ -14,7 +14,9 @@ RUN mkdir /app \
     && yarn install \
     && bower install --production --silent --config.interactive=false --allow-root \
     && cd /app/sass-server-gulp \
-    && yarn cache clean && bower --allow-root cache clean
+    && bower --allow-root cache clean \
+    && yarn remove gulp-bower bower \
+    && yarn cache clean
 
 WORKDIR /app/sass-server-gulp/
 
