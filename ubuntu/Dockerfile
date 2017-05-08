@@ -1,6 +1,6 @@
 FROM node
 
-MAINTAINER andrew.li@hinterlands.com.au
+MAINTAINER Andrew Li <andrew.li@hinterlands.com.au>
 
 RUN yarn global add gulpjs/gulp#4.0 bower && git config --system http.sslverify false
 
@@ -14,5 +14,3 @@ RUN cd /app/sass-server-gulp && \
 WORKDIR /app/sass-server-gulp/
 
 ENTRYPOINT ["gulp"]
-
-CMD ["--http"]
