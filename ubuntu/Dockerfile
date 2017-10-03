@@ -2,7 +2,7 @@ FROM node
 
 MAINTAINER Andrew Li <andrew.li@hinterlands.com.au>
 
-RUN yarn global add gulpjs/gulp#4.0 bower \
+RUN yarn global add gulpjs/gulp#4.0 \
     && git config --system http.sslverify false
 
 RUN mkdir /app \
@@ -12,10 +12,7 @@ RUN mkdir /app \
     && rm -rf src/ \
     && rm -rf yarn.lock \
     && yarn install \
-    && bower install --production --silent --config.interactive=false --allow-root \
     && cd /app/sass-server-gulp \
-    && bower --allow-root cache clean \
-    && yarn remove gulp-bower bower \
     && yarn cache clean
 
 WORKDIR /app/sass-server-gulp/
