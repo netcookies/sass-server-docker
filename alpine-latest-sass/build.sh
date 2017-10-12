@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t sass-server-gulp .
+docker build -t sass-server-gulp-ng:alpine .
