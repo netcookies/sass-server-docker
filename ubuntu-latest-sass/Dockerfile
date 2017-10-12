@@ -1,8 +1,6 @@
-FROM node:alpine
+FROM node
 
 MAINTAINER Andrew Li <andrew.li@hinterlands.com.au>
-
-RUN apk add --no-cache python=2.7.12-r0 git-perl make gcc g++ bash && rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN yarn global add gulpjs/gulp#4.0 \
     && git config --system http.sslverify false
