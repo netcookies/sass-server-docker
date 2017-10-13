@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t sass-server-gulp-ng .
+docker build -t sass-server-gulp:ng .
