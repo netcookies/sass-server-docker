@@ -3,18 +3,17 @@ FROM node:alpine
 MAINTAINER Andrew Li <andrew.li@hinterlands.com.au>
 
 RUN apk add --update --no-cache \
-        python=2.7.13-r1 \
-        git-perl \
-        make \
         gcc \
         g++ \
-        bash \
+        make \
         automake \
-        git \
         alpine-sdk  \
-        nasm  \
         autoconf  \
         build-base \
+        bash \
+        git \
+        git-perl \
+        nasm  \
         zlib \
         zlib-dev \
         libpng \
@@ -23,7 +22,8 @@ RUN apk add --update --no-cache \
         libwebp-dev \
         libjpeg-turbo \
         libjpeg-turbo-dev \
-&& rm /bin/sh && ln -s /bin/bash /bin/sh
+        python=2.7.13-r1 \
+        && rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN yarn global add gulpjs/gulp#4.0 \
     && git config --system http.sslverify false
