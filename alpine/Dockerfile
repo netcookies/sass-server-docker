@@ -25,7 +25,7 @@ RUN apk add --update --no-cache \
         python=2.7.13-r1 \
         && rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN yarn global add gulpjs/gulp \
+RUN yarn global add gulp@next \
     && git config --system http.sslverify false
 
 RUN mkdir /app \
