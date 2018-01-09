@@ -2,7 +2,7 @@ FROM node
 
 MAINTAINER Andrew Li <andrew.li@hinterlands.com.au>
 
-RUN yarn global add gulpjs/gulp#4.0 \
+RUN yarn global add gulpjs/gulp \
     && git config --system http.sslverify false
 
 RUN mkdir /app \
