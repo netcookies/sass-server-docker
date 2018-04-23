@@ -17,7 +17,7 @@ var del = require('del');
 var sequence = require('run-sequence');
 var pkg = require('./package.json')
 
-var production = false;
+var production = true;
 
 var file = {
   html:   'src/**/*.html',
