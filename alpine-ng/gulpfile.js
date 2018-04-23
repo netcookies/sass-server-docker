@@ -61,7 +61,8 @@ gulp.task('reload', function() {
 
 gulp.task('serve', ['sass'], function() {
   browserSync({
-    server: 'src/'
+    server: 'src/',
+    open: false
   });
 
   gulp.watch( file.scss, ['sass'] );
