@@ -31,8 +31,9 @@ RUN git config --system http.sslverify false \
     && rm -rf src/ \
     && rm -rf yarn.lock \
     && yarn install \
-    && yarn cache clean
+    && yarn cache clean \
+    && ln -s /app/node_modules/gulp/bin/gulp.js /usr/local/bin/gulp
 
 WORKDIR /app/
 
-ENTRYPOINT ["/app/node_modules/gulp/bin/gulp.js"]
+ENTRYPOINT ["gulp"]
