@@ -25,12 +25,11 @@ RUN apk add --update --no-cache \
         python2 \
         && rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN git config --system http.sslverify false
-
 ADD gulpfile.js /app/
 ADD package.json /app/
 
-RUN cd /app \
+RUN git config --system http.sslverify false \
+    && cd /app \
     rm -rf src/ \
     && rm -rf yarn.lock \
     && yarn install \
