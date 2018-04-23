@@ -30,14 +30,15 @@ RUN yarn global add gulp@next \
 
 RUN mkdir /app \
     && cd /app \
-    && git clone -b latest-node-sass https://github.com/netcookies/sass-server-gulp.git \
-    && cd /app/sass-server-gulp \
-    && rm -rf src/ \
+
+ADD gulpfile.js /app
+ADD package.json /app
+
+RUN rm -rf src/ \
     && rm -rf yarn.lock \
     && yarn install \
-    && cd /app/sass-server-gulp \
     && yarn cache clean
 
-WORKDIR /app/sass-server-gulp/
+WORKDIR /app/
 
 ENTRYPOINT ["gulp"]
