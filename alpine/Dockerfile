@@ -22,7 +22,7 @@ RUN apk add --update --no-cache \
         libwebp-dev \
         libjpeg-turbo \
         libjpeg-turbo-dev \
-        python=2.7.13-r1 \
+        python2 \
         && rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN yarn global add gulp@next \
