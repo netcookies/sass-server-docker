@@ -25,19 +25,17 @@ RUN apk add --update --no-cache \
         python2 \
         && rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN yarn global add gulp \
-    && git config --system http.sslverify false \
-    && mkdir /app \
-    && cd /app
+RUN git config --system http.sslverify false
 
-ADD gulpfile.js /app
-ADD package.json /app
+ADD gulpfile.js /app/
+ADD package.json /app/
 
-RUN rm -rf src/ \
+RUN cd /app \
+    rm -rf src/ \
     && rm -rf yarn.lock \
     && yarn install \
     && yarn cache clean
 
 WORKDIR /app/
 
-ENTRYPOINT ["gulp"]
+ENTRYPOINT ["/app/node_modules/gulp/bin/gulp.js"]
